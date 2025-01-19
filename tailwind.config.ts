@@ -10,6 +10,10 @@ export default {
   theme: {
   	extend: {
   		colors: {
+			webprimary: '#8CABFF', // Customize your primary color
+        websecondary: '#4477CE', // Customize your secondary color
+        webtertiary: '#512B81', // Customize your secondary color
+        webtextPrimary: '#111827', // For main text color
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

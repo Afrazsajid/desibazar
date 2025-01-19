@@ -1,0 +1,97 @@
+import { TrolleyIcon } from "@sanity/icons";
+import { defineField, defineType } from "sanity";
+import { fileURLToPath } from "url";
+
+export const prodcutType = defineType({
+    name: 'product',
+    title: 'Products',
+    type: 'document',
+    icon:TrolleyIcon,
+    fields: [
+      
+            defineField({
+                name: 'product',
+                title: 'Product Name',
+                type:"string",
+                validation:(Rule) => Rule.required(),
+                
+                
+            }),
+            defineField({
+                name: 'prodslug',
+                title: 'Slug',
+                type:"slug",
+                options:{
+                    source:"prodname",
+                    maxLength:96
+                },
+               
+                validation:(Rule) => Rule.required(),
+                
+                
+            }),
+            defineField({
+                name: 'prodimages',
+                title: 'Product Images',
+                type:"array",
+                of: [{ type: 'string' }],
+            
+                validation:(Rule) => Rule.required(),
+                
+                
+            }),
+
+            defineField({
+                name: 'categories',
+                title: 'Categories',
+                type: 'array',
+                of: [{ type: 'reference',to:{type:"category"} }],
+                description: 'List of product tags',
+              }),
+
+            defineField({
+                name: 'description',
+                title: 'Description',
+                type: 'blockContent',
+               
+                
+              }),
+
+              defineField({
+                name: 'price',
+                title: 'Price',
+                type:"number",
+             
+            
+                validation:(Rule) => Rule.required(),
+                
+                
+            }),
+              defineField({
+                name: 'stock',
+                title: 'Stock',
+                type:"number",
+             
+            
+                validation:(Rule) => Rule.required(),
+                
+                
+            }),
+
+            
+        
+        
+    ],
+    preview:{
+        select:{
+            prodname:"prodname",
+            price:"price"
+        },
+        prepare(select){
+            return {
+                tiltle:select.prodname,
+                subtitle:`Rs${select.price}`
+            }
+        }
+    }
+})
