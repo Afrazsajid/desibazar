@@ -1,4 +1,4 @@
-import { Category, Product } from '@/sanity.types';
+import {  Product } from '@/sanity.types';
 import React from 'react'
 import ProductsGrid from '../ProductsGrid';
 interface ProductsViewProps{
