@@ -6,11 +6,11 @@ import Productsview from "@/components/sections/Productsview";
 
 export default async function Home() {
   const products = await getAllProducts()
-  // const categories = await getAllCategories()
+  const categories = await getAllCategories()
 
   return (
     <main>
-      <Productsview products={products} />
+      <Productsview products={products}  />
      
     
     </main>
