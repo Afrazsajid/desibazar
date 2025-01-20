@@ -1,14 +1,19 @@
-import React from 'react'
+import React from "react";
 
-const   SearchPage = async({searchParams} : {
-    searchParams :{
-    query?:string;
-  }}) => {
- 
-const {query } = await searchParams || "";
-    return (
-    <div>SearchFor {query}ghg</div>
-  )
+interface SearchPageProps {
+  searchParams: Record<string, string | undefined>; // Allow an object with string or undefined values
 }
 
-export default SearchPage
+const SearchPage: React.FC<SearchPageProps> = ({ searchParams }) => {
+  const query = searchParams.query || ""; // Fallback to an empty string if undefined
+
+  return (
+    <div>
+      <h1>Search Results</h1>
+      <p>Query: {query}</p>
+      {/* Add logic to display search results */}
+    </div>
+  );
+};
+
+export default SearchPage;

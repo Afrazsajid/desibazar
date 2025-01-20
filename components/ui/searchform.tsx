@@ -6,6 +6,7 @@ const Searchform = () => {
   return (
     <Form
   action="/search"
+    
   className="flex items-center space-x-2 bg-gray-100 rounded-lg px-2 shadow-md w-full"
 >
   <input
