@@ -6,7 +6,7 @@ export default async function SearchPage({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  let params = { search:query || null}
+  // let params = { search:query || null}
 
   
 
