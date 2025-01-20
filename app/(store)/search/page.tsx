@@ -1,12 +1,17 @@
 import React from "react";
 
-interface SearchPageProps {
-  searchParams: Record<string, string | undefined>; // Allow an object with string or undefined values
-}
+export default async function SearchPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) {
+  const query = (await searchParams).query;
+  let params = { search:query || null}
 
-const SearchPage: React.FC<SearchPageProps> = ({ searchParams }) => {
-  const query = searchParams.query || ""; // Fallback to an empty string if undefined
+  
 
+
+  // console.log(posts)
   return (
     <div>
       <h1>Search Results</h1>
@@ -16,4 +21,4 @@ const SearchPage: React.FC<SearchPageProps> = ({ searchParams }) => {
   );
 };
 
-export default SearchPage;
+
