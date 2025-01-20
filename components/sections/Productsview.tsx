@@ -3,9 +3,9 @@ import React from 'react'
 import ProductsGrid from '../ProductsGrid';
 interface ProductsViewProps{
     products:Product[];
-    categories:Category[ ]
+   
 }
-const Productsview = ({products, categories}:ProductsViewProps) => {
+const Productsview = ({products, }:ProductsViewProps) => {
   return (
     <div>
          {/* category */}
