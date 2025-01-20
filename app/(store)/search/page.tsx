@@ -2,10 +2,10 @@ import React from 'react'
 
 const   SearchPage = async({searchParams} : {
     searchParams :{
-    query:string;
+    query?:string;
   }}) => {
  
-const {query } = await searchParams
+const {query } = await searchParams || "";
     return (
     <div>SearchFor {query}ghg</div>
   )
