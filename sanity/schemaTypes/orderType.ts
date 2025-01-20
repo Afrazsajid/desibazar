@@ -8,7 +8,7 @@ export const orderType = defineType({
   icon: BasketIcon, // You can use a relevant icon here if needed
   fields: [
     defineField({
-      name: 'orderNumber',
+      name: 'title',
       title: 'Order Number',
       type: 'string',
       description: 'Unique identifier for the order',

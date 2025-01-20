@@ -1,6 +1,6 @@
 import { TrolleyIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { fileURLToPath } from "url";
+
 
 export const prodcutType = defineType({
     name: 'product',
@@ -9,11 +9,13 @@ export const prodcutType = defineType({
     icon:TrolleyIcon,
     fields: [
       
-            defineField({
-                name: 'product',
-                title: 'Product Name',
-                type:"string",
-                validation:(Rule) => Rule.required(),
+        defineField({
+            name: 'title',
+            title: 'Product Name',
+            type: 'string',
+      
+          
+            validation:(Rule) => Rule.required(),
                 
                 
             }),
@@ -22,7 +24,7 @@ export const prodcutType = defineType({
                 title: 'Slug',
                 type:"slug",
                 options:{
-                    source:"prodname",
+                    source:"title",
                     maxLength:96
                 },
                
@@ -84,12 +86,12 @@ export const prodcutType = defineType({
     ],
     preview:{
         select:{
-            prodname:"prodname",
+            title:"title",
             price:"price"
         },
         prepare(select){
             return {
-                tiltle:select.prodname,
+                tiltle:select.title,
                 subtitle:`Rs${select.price}`
             }
         }

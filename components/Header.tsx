@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ highlightedItem }) => {
 
   return (
     <nav className="bg-white shadow-md sticky w-full top-0 z-50">
-      <div className="container mx-auto px-4 flex items-center justify-between h-16">
+      <div className="container mx-auto px-4 flex items-center justify-between h-14">
         {/* Logo / Home */}
         <div className="text-lg font-bold text-gray-800">Desi Bazar</div>
 
@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ highlightedItem }) => {
           <ClerkLoaded>
             {isSignedIn ? (
               <>
-              <div className=" flex gap-2 justify-center items-center   "><UserButton />  Welcome <div className="font-bold">{user.fullName}</div></div>
+              <div className=" flex gap-2 justify-center items-center  text-sm "><UserButton />  Welcome <div className="font-bold">{user.fullName}</div></div>
               
                 <Link href="/myorders" className="relative">
                 
