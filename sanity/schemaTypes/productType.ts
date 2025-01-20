@@ -51,10 +51,17 @@ export const prodcutType = defineType({
                 description: 'List of product tags',
               }),
 
-            defineField({
+              defineField({
                 name: 'description',
                 title: 'Description',
-                type: 'blockContent',
+                type: 'markdown',
+               
+                
+              }),
+              defineField({
+                name: 'smalldescription',
+                title: 'Small Description',
+                type: 'string',
                
                 
               }),
@@ -84,15 +91,15 @@ export const prodcutType = defineType({
         
         
     ],
-    preview:{
-        select:{
-            title:"title",
-            price:"price"
+    preview: {
+        select: {
+            title: "title",
+            price: "price"
         },
-        prepare(select){
+        prepare(select) {
             return {
-                tiltle:select.title,
-                subtitle:`Rs${select.price}`
+                title: select.title, // Fix: Correct the typo here
+                subtitle: `Rs${select.price}`
             }
         }
     }
