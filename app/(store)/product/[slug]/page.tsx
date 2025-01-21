@@ -2,11 +2,12 @@ import { getProductFromSlug } from "@/sanity/lib/productBySlug/getProductFromSlu
 import ProductPage from "@/components/sections/ProductPage";
 import { notFound } from "next/navigation";
 
-type ProductPageProps = {
+// Define the correct type for the params
+interface ProductPageProps {
   params: {
     slug: string;
   };
-};
+}
 
 // This is a server-side component and will fetch the product data at runtime
 const ProductSlugPage = async ({ params }: ProductPageProps) => {
@@ -14,7 +15,6 @@ const ProductSlugPage = async ({ params }: ProductPageProps) => {
 
   // Fetch product details from the backend or CMS
   const product = await getProductFromSlug(slug);
-  // console.log(product)
 
   // If no product is found, redirect to 404 page
   if (!product) {
