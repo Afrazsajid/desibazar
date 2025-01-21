@@ -77,6 +77,7 @@ export type Product = {
   title?: string;
   prodslug?: Slug;
   prodimages?: Array<string>;
+  sizes?: Array<string>;
   categories?: Array<{
     _ref: string;
     _type: "reference";
@@ -245,6 +246,29 @@ export type ALL_CATEGORYIES_QUERYResult = Array<{
   description?: string;
 }>;
 
+// Source: ./sanity/lib/productBySlug/getProductFromSlug.ts
+// Variable: PRODUCT_QUERY
+// Query: *[_type == "product" && prodslug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      prodslug,      prodimages,      categories[]->{        _id,        title      },      description,      smalldescription,      price,      stock    }
+export type PRODUCT_QUERYResult = {
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string | null;
+  prodslug: Slug | null;
+  prodimages: Array<string> | null;
+  sizes?: Array<string>;
+  categories: Array<{
+    _id: string;
+    title: string | null;
+  }> | null;
+  description: string | null;
+  smalldescription: string | null;
+  price: number | null;
+  stock: number | null;
+} | null;
+
 // Source: ./sanity/lib/products/getAllProducts.ts
 // Variable: ALL_PRODUCTS_QUERY
 // Query: *[_type == "product"] | order(title asc)
@@ -257,6 +281,7 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
   title?: string;
   prodslug?: Slug;
   prodimages?: Array<string>;
+  sizes?: Array<string>;
   categories?: Array<{
     _ref: string;
     _type: "reference";
@@ -275,6 +300,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n        *[_type == \"category\"]\n | order(title asc)\n        ": ALL_CATEGORYIES_QUERYResult;
+    "\n    *[_type == \"product\" && prodslug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      prodslug,\n      prodimages,\n      categories[]->{\n        _id,\n        title\n      },\n      description,\n      smalldescription,\n      price,\n      stock\n    }\n  ": PRODUCT_QUERYResult;
     "\n        *[_type == \"product\"] | order(title asc)\n        ": ALL_PRODUCTS_QUERYResult;
   }
 }

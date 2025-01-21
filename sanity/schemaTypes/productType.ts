@@ -44,6 +44,23 @@ export const prodcutType = defineType({
             }),
 
             defineField({
+                name: 'sizes',
+                title: 'Sizes',
+                type: 'array',
+                of: [{ type: 'string' }],
+                options: {
+                  list: [
+                    { title: 'Small', value: 'S' },
+                    { title: 'Medium', value: 'M' },
+                    { title: 'Large', value: 'L' },
+                    { title: 'Extra Large', value: 'XL' },
+                    { title: 'Double Extra Large', value: 'XXL' },
+                  ],
+                },
+              }),
+              
+
+            defineField({
                 name: 'categories',
                 title: 'Categories',
                 type: 'array',

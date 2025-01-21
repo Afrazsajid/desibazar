@@ -49,7 +49,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             </span>
             {product.price && (
               <small className="old-price line-through text-gray-400 ml-2">
-                Rs {product.price.toFixed(2)}
+                Rs {((35/100*product.price)+product.price).toFixed(2)}
               </small>
             )}
           </div>

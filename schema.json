@@ -385,6 +385,16 @@
         },
         "optional": true
       },
+      "sizes": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "string"
+          }
+        },
+        "optional": true
+      },
       "categories": {
         "type": "objectAttribute",
         "value": {
