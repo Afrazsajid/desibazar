@@ -12,11 +12,11 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link
       href={`product/${product.prodslug?.current}`}
-      className={`shadow-md  card relative group flex flex-col bg-white rounded-lg overflow-hidden transition-all duration-300 box- ${
-        isOutOfStock ? "opacity-75" : ""
+      className={` hover:shadow-xl hover:scale-105 w-64 h-96 shadow-md  card relative group flex flex-col bg-white rounded-lg overflow-hidden transition-all duration-300 box- ${
+        isOutOfStock ? "opacity-75 " : ""
       }`}
     >
-      <div className="image-container relative aspect-square w-full h-full overflow-hidden">
+      <div className="image-container relative aspect-square w-full h-full overflow-hidden ">
         {product.prodimages && (
           <Image
             src={product.prodimages[0]}
@@ -24,7 +24,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             layout="fill"
             objectFit="cover"
             className={`img-fluid rounded thumbnail-image transition-all duration-500 ${
-              isOutOfStock ? "blur-sm grayscale" : ""
+              isOutOfStock ? "blur-sm grayscale " : ""
             }`}
           />
         )}

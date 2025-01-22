@@ -13,7 +13,7 @@ const Searchform = () => {
     type="text"
     name="query"
     placeholder="Search for products"
-    className="w-full px-4 text-sm text-gray-700 bg-transparent border-none outline-none focus:ring-2 focus:ring-primary rounded-lg"
+    className="w-full px-4 py-2 text-sm text-gray-700 bg-transparent border-none outline-none focus:ring-2 focus:ring-primary rounded-lg"
   />
   <Button
     type="submit"
