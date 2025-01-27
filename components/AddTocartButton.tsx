@@ -12,7 +12,7 @@ const AddToCartButton = ({ product, disabled }: AddToBasketButtonProps) => {
   const { addItem, removeItem, getItemCount, removeQuantity } = useBasketStore();
   const [isClient, setIsClient] = useState(false);
 
-  // Get the current quantity of the product in the basket
+  // Get the current quantity of the product in the baskett
   const itemCount = getItemCount(product._id);
 
   useEffect(() => {
