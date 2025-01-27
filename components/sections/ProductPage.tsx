@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { Button } from "../ui/button";
 import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
+import AddToCartButton from "../AddToCartButton";
 
 
 
