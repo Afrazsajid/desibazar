@@ -7,12 +7,17 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { Button } from "../ui/button";
 import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
+import AddToCartButton from "@/components/AddToCartButton";
+
+
+
+
 
 type Size = "S" | "M" | "L" | "XL" | "XXL";
 type Color = "black" | "red" | "blue";
 
 interface ProductFullCardProps {
-  product: PRODUCT_QUERYResult | null;
+  product: PRODUCT_QUERYResult | undefined;
 }
 
 const rating = 4.5; // Example rating
@@ -47,6 +52,12 @@ const ProductFullCard: React.FC<ProductFullCardProps> = ({ product }) => {
       comment: "It's okay, but I expected better stitching quality.",
     },
   ];
+
+  const handleClick = (productId:string) => {
+    console.log(productId);
+    // Add your desired functionality here (e.g., add item to cart)
+  };
+  
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -162,7 +173,7 @@ const ProductFullCard: React.FC<ProductFullCardProps> = ({ product }) => {
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 60 }}
                   className="ml-4 px-3 py-1 bg-red-100 text-red-600 text-sm font-medium rounded-full"
                 >
                   Out of Stock
@@ -236,24 +247,28 @@ const ProductFullCard: React.FC<ProductFullCardProps> = ({ product }) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex-1 px-4 py-2 bg-webprimary text-white font-bold rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 px-4 py-3 bg-webprimary text-white font-bold rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isOutOfStock}
               >
                 <i className="bx bxs-zap"></i> Buy Now
               </motion.button>
+              <motion.div
+  className="flex-1"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+
+
+>
+  <AddToCartButton product={product} disabled={isOutOfStock}/>
+
+
+</motion.div>
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 px-4 py-2 bg-gray-200 text-gray-800 font-bold rounded-md hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isOutOfStock}
-              >
-                <i className="bx bxs-cart"></i> Add to Cart
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.09 }}
                 whileTap={{ scale: 0.95 }}
                 disabled={!isOutOfStock}
-                className="px-4 py-2 bg-gray-200 text-gray-800 font-bold rounded-md hover:text-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={() => handleClick(product.prodslug?.current || "hgf")}
+                className="w-full px-4 py-3 text-gray-800 font-bold rounded-md transition-all duration-300 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <i className="bx bxs-heart"></i> Wishlist
               </motion.button>

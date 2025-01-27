@@ -11,7 +11,7 @@ interface ProductPageProps {
 
 // This is a server-side component and will fetch the product data at runtime
 const ProductSlugPage = async ({ params }: ProductPageProps) => {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Fetch product details from the backend or CMS
   const product = await getProductFromSlug(slug);

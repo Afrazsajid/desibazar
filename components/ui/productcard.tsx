@@ -1,13 +1,21 @@
 "use client";
 
-import React from "react";
-import { Product } from "@/sanity.types";
+import React, { useState } from "react";
+import { Product, PRODUCT_QUERYResult } from "@/sanity.types";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./button";
+import useBasketStore from "@/stores/store";
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product }: { product: PRODUCT_QUERYResult }) => {
+  const {addItem}=useBasketStore()
+  const [isAdded, setIsAdded] = useState(false); // State to track if the product is added
   const isOutOfStock = product.stock != null && product.stock <= 0;
+
+  const handleAddToCart = () => {
+    addItem(product);
+    setIsAdded(true); // Mark the item as added
+  };
 
   return (
     <Link
@@ -53,8 +61,16 @@ const ProductCard = ({ product }: { product: Product }) => {
               </small>
             )}
           </div>
-          <Button className="buy text-purple-600 font-medium cursor-pointer">
-            BUY 
+              {/* Add to Cart Button */}
+              <Button
+            className={`${
+              isAdded
+                ? "bg-green-500 text-white"
+                : "text-purple-600 hover:bg-purple-600 hover:text-white"
+            } font-medium cursor-pointer py-2 px-4 rounded-md transition-all duration-300`}
+            onClick={handleAddToCart}
+          >
+            {isAdded ? "Added to Cart" : "Add to Cart"}
           </Button>
         </div>
       </div>

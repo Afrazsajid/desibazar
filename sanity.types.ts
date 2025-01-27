@@ -267,7 +267,7 @@ export type PRODUCT_QUERYResult = {
   smalldescription: string | null;
   price: number | null;
   stock: number | null;
-} | null;
+} ;
 
 // Source: ./sanity/lib/products/getAllProducts.ts
 // Variable: ALL_PRODUCTS_QUERY

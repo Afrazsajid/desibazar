@@ -29,7 +29,8 @@
     "sanity-plugin-markdown": "^5.0.0",
     "styled-components": "^6.1.14",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^5.0.3"
   },
   "packageManager": "npm@10.5.2",
   "overrides": {
