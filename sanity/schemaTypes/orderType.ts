@@ -31,6 +31,9 @@ export const orderType = defineType({
       type: 'string',
       description: 'ID of the user who placed the order',
     }),
+    
+
+
     defineField({
       name: 'address',
       title: 'Shipping Address',
@@ -55,6 +58,12 @@ export const orderType = defineType({
           name: 'country',
           title: 'Country',
           type: 'string',
+        }),
+        defineField({
+          name: 'email',
+          title: 'Email Address',
+          type: 'email',
+          validation: Rule => Rule.required() // You can add validation to ensure it’s a proper email
         }),
       ],
     }),

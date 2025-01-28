@@ -106,6 +106,7 @@ export type Order = {
     city?: string;
     postalCode?: string;
     country?: string;
+    email?: string;
   };
   status?: "pending" | "paid" | "shipped" | "delivered";
   createdAt?: string;
@@ -248,17 +249,16 @@ export type ALL_CATEGORYIES_QUERYResult = Array<{
 
 // Source: ./sanity/lib/productBySlug/getProductFromSlug.ts
 // Variable: PRODUCT_QUERY
-// Query: *[_type == "product" && prodslug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      prodslug,      prodimages,      categories[]->{        _id,        title      },      description,      smalldescription,      price,      stock    }
+// Query: *[_type == "product" && prodslug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      prodslug,      prodimages,      categories[]->{        _id,        title      },      description,      smalldescription,      price,      sizes,      stock    }
 export type PRODUCT_QUERYResult = {
   _id: string;
   _type: "product";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string | null;
+  title: string | "title";
   prodslug: Slug | null;
-  prodimages: Array<string> | null;
-  sizes?: Array<string>;
+  prodimages: Array<string> | ["dghdgdhd","idgsdfshs"];
   categories: Array<{
     _id: string;
     title: string | null;
@@ -266,8 +266,9 @@ export type PRODUCT_QUERYResult = {
   description: string | null;
   smalldescription: string | null;
   price: number | null;
+  sizes: Array<string> | null;
   stock: number | null;
-} ;
+} | null;
 
 // Source: ./sanity/lib/products/getAllProducts.ts
 // Variable: ALL_PRODUCTS_QUERY
@@ -295,12 +296,36 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
   stock?: number;
 }>;
 
+// Source: ./sanity/lib/products/getProductsSearch.ts
+// Variable: SEARCH_PRODUCTS_QUERY
+// Query: *[_type == "product" && (      !defined($search) ||       title match $search ||       categories[]->title match $search ||       prodslug.current match $search    )] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      prodslug,      prodimages,      categories[]->{        _id,        title      },      description,      smalldescription,      price,      sizes,      stock    }
+export type SEARCH_PRODUCTS_QUERYResult = Array<{
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string | null;
+  prodslug: Slug | null;
+  prodimages: Array<string> | null;
+  categories: Array<{
+    _id: string;
+    title: string | null;
+  }> | null;
+  description: string | null;
+  smalldescription: string | null;
+  price: number | null;
+  sizes: Array<string> | null;
+  stock: number | null;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n        *[_type == \"category\"]\n | order(title asc)\n        ": ALL_CATEGORYIES_QUERYResult;
-    "\n    *[_type == \"product\" && prodslug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      prodslug,\n      prodimages,\n      categories[]->{\n        _id,\n        title\n      },\n      description,\n      smalldescription,\n      price,\n      stock\n    }\n  ": PRODUCT_QUERYResult;
+    "\n    *[_type == \"product\" && prodslug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      prodslug,\n      prodimages,\n      categories[]->{\n        _id,\n        title\n      },\n      description,\n      smalldescription,\n      price,\n      sizes,\n      stock\n    }\n  ": PRODUCT_QUERYResult;
     "\n        *[_type == \"product\"] | order(title asc)\n        ": ALL_PRODUCTS_QUERYResult;
+    "\n    *[_type == \"product\" && (\n      !defined($search) || \n      title match $search || \n      categories[]->title match $search || \n      prodslug.current match $search\n    )] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      prodslug,\n      prodimages,\n      categories[]->{\n        _id,\n        title\n      },\n      description,\n      smalldescription,\n      price,\n      sizes,\n      stock\n    }\n  ": SEARCH_PRODUCTS_QUERYResult;
   }
 }

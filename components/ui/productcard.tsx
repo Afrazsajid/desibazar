@@ -10,7 +10,7 @@ import useBasketStore from "@/stores/store";
 const ProductCard = ({ product }: { product: PRODUCT_QUERYResult }) => {
   const {addItem}=useBasketStore()
   const [isAdded, setIsAdded] = useState(false); // State to track if the product is added
-  const isOutOfStock = product.stock != null && product.stock <= 0;
+  const isOutOfStock = product?.stock != null && product.stock <= 0;
 
   const handleAddToCart = () => {
     addItem(product);
@@ -19,15 +19,15 @@ const ProductCard = ({ product }: { product: PRODUCT_QUERYResult }) => {
 
   return (
     <Link
-      href={`product/${product.prodslug?.current}`}
+      href={`product/${product?.prodslug?.current}`}
       className={` hover:shadow-xl hover:scale-105 w-64 h-96 shadow-md  card relative group flex flex-col bg-white rounded-lg overflow-hidden transition-all duration-300 box- ${
         isOutOfStock ? "opacity-75 " : ""
       }`}
     >
       <div className="image-container relative aspect-square w-full h-full overflow-hidden ">
-        {product.prodimages && (
+        {product?.prodimages && (
           <Image
-            src={product.prodimages[0]}
+            src={product?.prodimages[0]}
             alt="Product Image"
             layout="fill"
             objectFit="cover"
@@ -45,24 +45,25 @@ const ProductCard = ({ product }: { product: PRODUCT_QUERYResult }) => {
 
       <div className="product-detail-container p-4 flex flex-col justify-between">
         <h2 className="dress-name text-base font-semibold truncate">
-          {product.title}
+          {product?.title}
         </h2>
         <p className="mt-1 text-sm text-gray-600 line-clamp-2">
-          {product.smalldescription}
+          {product?.smalldescription}
         </p>
         <div className="mt-2 flex justify-between items-center">
           <div>
             <span className="new-price text-red-500 text-lg font-bold">
-              Rs {product.price?.toFixed(2)}
+              Rs {product?.price?.toFixed(2)}
             </span>
-            {product.price && (
+            {product?.price && (
               <small className="old-price line-through text-gray-400 ml-2">
-                Rs {((35/100*product.price)+product.price).toFixed(2)}
+                Rs {((35/100*product?.price)+product.price).toFixed(2)}
               </small>
             )}
           </div>
               {/* Add to Cart Button */}
               <Button
+              disabled={isOutOfStock}
             className={`${
               isAdded
                 ? "bg-green-500 text-white"
