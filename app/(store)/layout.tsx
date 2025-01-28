@@ -35,7 +35,7 @@ export default function RootLayout({
         <Header highlightedItem="home"/>
         {children}
       </body>
-      <SanityLive/>
+      {/* <SanityLive/> */}
     </html>
     </ClerkProvider>
   );

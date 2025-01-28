@@ -8,6 +8,7 @@ import { Star } from "lucide-react";
 import { Button } from "../ui/button";
 import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 import AddToCartButton from "../AddTocartButton";
+import ProductDescription from "../ui/ProductDescription";
 
 
 
@@ -169,7 +170,7 @@ const ProductFullCard: React.FC<ProductFullCardProps> = ({ product }) => {
               </div>
             </div>
             <div className="flex items-center mb-4">
-              <span className="text-3xl font-bold text-gray-800">${product.price?.toFixed(2) || "N/A"}</span>
+              <span className="text-3xl font-bold text-gray-800">Rs. {product.price?.toFixed(2) || "N/A"}</span>
               {isOutOfStock && (
                 <motion.span
                   initial={{ scale: 0 }}
@@ -277,6 +278,12 @@ const ProductFullCard: React.FC<ProductFullCardProps> = ({ product }) => {
           </div>
         </div>
       </motion.div>
+      {product.description ? (
+  <ProductDescription markdown={product.description} />
+) : (
+  <div>No description available</div> // Fallback or alternative UI
+)}
+     
     </div>
   );
 };

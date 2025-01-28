@@ -6,6 +6,7 @@ import { useUser, ClerkLoaded, SignInButton, UserButton } from "@clerk/nextjs";
 import { Menu, ShoppingCart , PackageIcon} from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Searchform from "./ui/searchform";
+import useBasketStore from "@/stores/store";
 
 
 // Define props type for dynamic button highlighting
@@ -19,6 +20,8 @@ const Navbar: React.FC<NavbarProps> = ({ highlightedItem }) => {
   // A function to check if the current item is the highlighted one
   const getButtonClass = (item: string) =>
     highlightedItem === item ? "bg-webprimary text-white" : "text-gray-800 hover:bg-gray-200";
+
+  const groupedItemsLength = useBasketStore((state) => state.getGroupedItems().length);
 
   return (
     <nav className="bg-white shadow-md sticky w-full top-0 z-50">
@@ -66,7 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({ highlightedItem }) => {
           <Link href="/cart" className="relative">
             <ShoppingCart size={30} />
             <span className="absolute bottom-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              8
+              {groupedItemsLength}
             </span>
           </Link>
         </div>

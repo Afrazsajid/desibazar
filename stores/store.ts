@@ -16,7 +16,8 @@ interface BasketState {
   clearBasket: () => void; // Function to clear all items from the basket
   getTotalPrice: () => number; // Function to calculate total price
   getItemCount: (productId: string) => number; // Function to get item count by ID
-  getGroupedItems: () => BasketItem[]; // Function to return grouped items
+  getGroupedItems: () => BasketItem[];
+   // Function to return grouped items
 }
 
 // Zustand store with persist middleware
